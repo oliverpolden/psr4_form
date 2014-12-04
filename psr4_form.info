@@ -1,0 +1,6 @@
+name = PSR-4 Form
+description = Example of a PSR-4 form.
+core = 7.x
+php = 5.3
+dependencies[] = xautoload
+dependencies[] = cool

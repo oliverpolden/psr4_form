@@ -1,0 +1,32 @@
+<?php
+/*
+//use Drupal\psr4_form\Form\FormExample;
+*/
+function psr4_form_menu() {
+
+  $items['psr4/form'] = array(
+    'title' => 'Example PSR-4 Form', //page
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('psr4_form'), //put the name of the form here
+    'access callback' => TRUE
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_forms()
+ */
+function psr4_form_forms($form_id, $args) {
+  $classes = \Drupal\cool\Loader::mapImplementationsAvailable('Form', '\Drupal\cool\Controllers\FormController');
+  unset($classes['Drupal\\cool\\BaseForm']);
+  unset($classes['Drupal\\cool\\BaseSettingsForm']);
+  $forms = array();
+  foreach ($classes as $class_name) {
+    $forms[$class_name::getId()] = array(
+      'callback' => 'cool_default_form_callback',
+      'callback arguments' => array($class_name),
+    );
+  }
+  return $forms;
+}
