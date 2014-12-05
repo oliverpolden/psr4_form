@@ -1,4 +1,5 @@
 <?php
+
 namespace Drupal\psr4_form\Form;
 
 class FormExample extends \Drupal\cool\BaseForm {
@@ -16,7 +17,7 @@ class FormExample extends \Drupal\cool\BaseForm {
     return $form;
   }
 
- public static function validate($form, &$form_state) {
+  public static function validate($form, &$form_state) {
     if (empty($form_state['values']['my_textfield'])) {
       form_set_error('my_textfield', 'You did not enter anything.');
     }
