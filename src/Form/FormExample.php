@@ -1,14 +1,13 @@
 <?php
 namespace Drupal\psr4_form\Form;
 
-
 class FormExample extends \Drupal\cool\BaseForm {
 
-  static public function getId() {
+  public static function getId() {
     return 'psr4_form';
   }
 
-  static public function build() {
+  public static function build() {
     $form = parent::build();
     $form['my_textfield'] = array(
       '#type' => 'textfield',
@@ -17,13 +16,13 @@ class FormExample extends \Drupal\cool\BaseForm {
     return $form;
   }
 
-  static public function validate($form, &$form_state) {
+ public static function validate($form, &$form_state) {
     if (empty($form_state['values']['my_textfield'])) {
       form_set_error('my_textfield', 'You did not enter anything.');
     }
   }
 
-  static public function submit($form, &$form_state) {
+  public static function submit($form, &$form_state) {
     drupal_set_message(t('You entered <strong>%text</strong>', array('%text' => $form_state['values']['my_textfield'])));
   }
 }
